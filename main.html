@@ -1,0 +1,73 @@
+<html> 
+ <head>
+    <title></title> 
+</head>
+ <body>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body> 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+ <script>
+var sketchProc = function(processingInstance) {
+with (processingInstance) {
+//START
+size(400, 400); 
+frameRate(230);
+
+noStroke();
+background(255,255,255);
+var x = 0;
+var y = 380;
+var delta = 2;
+var dir = 0;
+var speed = delta;
+draw = function() {
+    fill (255, 242, 0);
+    ellipse (x,y,20,20);
+    if (dir === 1) {
+        y=y-speed;
+        x++;
+    }
+    if (dir === 2) {
+        y=y+speed;
+        x++;
+    }
+    if (dir === 3) {
+        x=316;
+        y=250;
+        dir = 4;
+    }
+    if (dir === 4) {
+        x=x-speed;
+    }
+    //if cordinates
+    
+    if (y >= 380 && x <= 0) {      //bottom left//
+        dir = 1;
+    }
+    
+    if (y === 0 && x > 170 && x < 200) {    //top mid//
+        dir = 2;
+    }
+    
+    if (y >= 380 && x >= 380) {    //bottom right//
+        dir = 3;
+    }
+    
+    if (y === 250 && x === 84) {    //left mid//
+        background(255, 255, 255);
+        x=0;
+        y=380;
+    }
+};
+
+//END
+}
+};
+
+var canvas = document.getElementById("mycanvas"); 
+var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
